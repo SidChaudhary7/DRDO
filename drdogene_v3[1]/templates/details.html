@@ -1,0 +1,659 @@
+{% load static %}
+{% load listfilt %}
+{% load toand %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-146281994-1');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="{% static 'images/fvicon.png'%}">
+
+
+  <title>MYOMIR.DB</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+  <script src="{% static 'js/excelexportjs.js'%}"></script>
+
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
+
+<script>
+
+function clickfunc(obj) {
+   var t = $(obj).text();
+   var array = t.split(" ");
+   window.location = "https://www.ncbi.nlm.nih.gov/sra/?term=" + array[0];
+}
+// $('#thref').click(function() {
+//   valuehref=$('#thref').text()
+//   console.log(valuehref);
+//    // window.location = "www.example.com/index.php?id=" + this.id;
+// });
+</script>
+  <style>
+  .vis-button{
+    background-color: white;
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: antiquewhite;
+  }
+  </style>
+
+  <style>
+  #loadingBar {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width: -webkit-fill-available;
+    height : -webkit-fill-available;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    opacity:1;
+  }
+  #wrapper {
+    position:relative;
+    width:900px;
+    height:900px;
+  }
+
+  #text {
+    position:absolute;
+    top:0px;
+    left:530px;
+    width:30px;
+    height:50px;
+    margin:auto auto auto auto;
+    font-size:22px;
+    color: #000000;
+  }
+
+
+  div.outerBorder {
+    position:relative;
+    top:300px;
+    width:600px;
+    height:44px;
+    margin:auto auto auto auto;
+    border:8px solid rgba(0,0,0,0.1);
+    background: rgb(252,252,252); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+    border-radius:72px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  }
+
+  #border {
+    position:absolute;
+    top:3px;
+    left:10px;
+    width:500px;
+    height:23px;
+    margin:auto auto auto auto;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+    border-radius:10px;
+  }
+
+  #bar {
+    position:absolute;
+    top:1px;
+    left:0px;
+    width:20px;
+    height:20px;
+    margin:auto auto auto auto;
+    border-radius:11px;
+    border:2px solid rgba(30,30,30,0.05);
+    background: rgb(0, 173, 246); /* Old browsers */
+    box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+  }
+
+  </style>
+
+  <style>
+  .open>.dropdown-menu {
+
+    z-index: 100000;
+  }
+
+  </style>
+
+</head>
+<body>
+
+  <div class=container-fluid style='background-image:url({% static "images/Picture1.png" %});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;'>
+
+    <div class="row" >
+      <div class="col-3" >
+      </div>
+      <div class="col-6" >
+        <img src="{% static 'images/Picture2.png' %}" style="width: 100%;">
+          <p align=center style="color:black;font-size: 33px;font-weight: 600;">A Database of miRNAs during Muscular Atrophy</p>
+      </div>
+<div class="col-1">
+</div>
+<div class="col-2">
+  <div class="row">
+    <div class="col-6" style="padding: 0;padding-top: 8%;">
+      <img src="{% static 'images/Picture3.png' %}" style="width: 100%;">
+    </div>
+    <div class="col-6" style="padding: 0;padding-top: 14%;">
+      <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">Defence Institute of Physiology and Allied Sciences,</p>
+      <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">DRDO</p>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fee7ed !important;">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav" style="margin-left: 30%;">
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link active" href="{% url 'index'%}">Home <span class="sr-only">(current)</span></a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'query'%}">Browse</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'search'%}">Search</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'tutorial'%}">Tutorial</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'stats'%}">Statistics</a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'contact'%}">Contact</a>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container">
+
+
+
+  <!-- Three columns of text below the carousel -->
+  <div class="row" style="margin-top:2%">
+
+    <div class="col-4">
+      <h3 style="text-align: center;">{{mirna}}</h3>
+
+
+      <table  class="table table-bordered">
+        <tbody>
+          <tr>
+            <td><b>miRBase Stem Loop Id</b></td>
+            <td style="word-break: break-word;"><b>{{slid}}</b></td>
+          </tr>
+          <tr style="background-color: antiquewhite;">
+            <td><b>miRBase Accession</b></td>
+            <td style="word-break: break-word;"><a href='http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc={{miracc}}'  target='_blank'>{{miracc}}</a></td>
+          </tr>
+          <tr>
+            <td><b>Family</b></td>
+            <td style="word-break: break-word;">{{fam}}</td>
+          </tr>
+          <tr style="background-color: antiquewhite;">
+            <td><b>5'</b></td>
+            <td style="word-break: break-word;"><a href='http://www.mirbase.org/cgi-bin/mature.pl?mature_acc={{fpri}}'  target='_blank'>{{fpri}}</a></td>
+          </tr>
+          <tr>
+            <td><b>3'</b></td>
+            <td style="word-break: break-word;"><a href='http://www.mirbase.org/cgi-bin/mature.pl?mature_acc={{tpri}}'  target='_blank'>{{tpri}}</a></td>
+          </tr>
+          <tr style="background-color: antiquewhite;">
+            <td><b>Chromosome</b></td>
+            <td style="word-break: break-word;">{{chrom}}</td>
+          </tr>
+          <tr>
+            <td><b>Precursor</b></td>
+            <td style="word-break: break-word;">{{prec}}</td>
+          </tr>
+          <tr style="background-color: antiquewhite;">
+            <td><b>Mature</b></td>
+            <td style="word-break: break-word;">{{rnid}}</td>
+          </tr>
+          <tr>
+            <td><b>RNA central ID</b></td>
+            <td style="word-break: break-word;"><a href='https://rnacentral.org/rna/{{mature|to_and}}'  target='_blank'>{{mature}}</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <img src="{{img}}" style="width: 100%;" />
+      <div style="background-color:#000000c9">
+        <h3 style="margin-left: 3%;color:white;">Color coding for Graphs</h3>
+        <h4 style="color: red;margin-left: 3%;">Input miRNA</h4>
+        <h4 style="color: yellow;margin-left: 3%;">Gene</h4>
+        <h4 style="color: #38e238;margin-left: 3%;">TF</h4>
+      </div>
+
+    </div>
+
+    <div class="col-8" >
+      <h1>miRNA and Targets</h1>
+      <div id="mynetwork" style="height: 700px;border:  solid;border-width: 1px;background-color: black;"></div>
+      <div id="loadingBar">
+        <div class="outerBorder">
+          <div id="text">0%</div>
+          <div id="border">
+            <div id="bar"></div>
+          </div>
+        </div>
+      </div>
+      <form method="post" action="{% url 'sslinfo' %}" style="margin-top:1%">{% csrf_token %}
+        <input type="text" value="{{mirna}}" name="mir" style="display:none"></input>
+        <button type="submit" class="btn btn-primary btn-block">Search FFLs</button>
+      </form>
+      <div id="dvjson"></div>
+      <button class="btn btn-primary btn-lg btn-block"  type="button" id="downedge" style="margin-top:1%">Download Network File</button>
+
+    </div>
+
+
+  </div>
+
+  <div class="row" style="margin-top:2%">
+    <div class="col-12">
+      <h2 style="
+      border-style: double;
+      background-color: antiquewhite;
+      width: fit-content;
+      ">Muscle Atrophy Association</h2>
+
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr style="background-color: #ff7017c9;">
+
+            <th>Muscle Atrophy miRNA listed in text</th>
+            <th>Human/Mouse miRNA homolog</th>
+            <th>Source organism</th>
+            <th>Experimental detail</th>
+            <th>Duration of experiment</th>
+            <th>Level of expression</th>
+            <th>Fold Change</th>
+            <th>Tissue of Expression</th>
+            <th>Type of Experiment</th>
+            <th>Associated as Biomarker</th>
+            <th>Reference PMID</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for i in dibi %}
+          <tr>
+            <td> {{mam|get_at_index:forloop.counter0}} </td>
+            <td> {{mirna}} </td>
+            <td> {{tom|get_at_index:forloop.counter0}} </td>
+            <td> {{expcon|get_at_index:forloop.counter0}} </td>
+            <td> {{doe|get_at_index:forloop.counter0}} </td>
+            <td> {{uds|get_at_index:forloop.counter0}} </td>
+            <td> {{fc|get_at_index:forloop.counter0}} </td>
+            <td> {{soe|get_at_index:forloop.counter0}} </td>
+            <td> {{toe|get_at_index:forloop.counter0}} </td>
+            <td> {{dibi|get_at_index:forloop.counter0}} </td>
+            <td><a href='https://www.ncbi.nlm.nih.gov/pubmed/{{ref|get_at_index:forloop.counter0}}' target="_blank"> {{ref|get_at_index:forloop.counter0}} </a></td>
+          </tr>
+          {%endfor %}
+
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-top:2%">
+    <div class="col-12">
+      <h3 style="
+      border-style: double;
+      background-color: antiquewhite;
+      width: fit-content;
+      ">Drug Association </h3>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr style="background-color: #ff7017c9;">
+            <th>miRNA</th>
+            <th>Gene</th>
+            <th>Drug</th>
+            <th>PMID</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for i in drug %}
+          <tr>
+            <td>{{mirna}}</td>
+            <td>{{ge|get_at_index:forloop.counter0}}</td>
+            <td>{{drug|get_at_index:forloop.counter0}}</td>
+            <td><a href='https://www.ncbi.nlm.nih.gov/pubmed/{{pid|get_at_index:forloop.counter0}}' target="_blank">{{pid|get_at_index:forloop.counter0}}</a></td>
+
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:2%">
+    <div class="col-6">
+      <h3 style="
+      border-style: double;
+      background-color: antiquewhite;
+      width: fit-content;
+      ">Tissue Association </h3>
+      <table id="example1" class="table table-striped table-bordered">
+        <thead>
+          <th style="background-color: #ff7017c9;">Tissue ID</th>
+          {% for k in count %}
+          <th style="background-color: #ff7017c9;">{{mirna}} {Reads Per Million (RPM)}</th>
+
+          {% endfor %}
+        </thead>
+        <tbody>
+          {% for j in fink %}
+          <tr>
+            {% for t in j %}
+            {% if forloop.first %}
+            <td><a id="thref" onclick="clickfunc(this)" style="color:blue;cursor:pointer;font-size: 14px;">{{t}}</a></td>
+            {% else %}
+            <td>{{t}}</td>
+            {% endif %}
+            {% endfor %}
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-6">
+      <h3 style="
+      border-style: double;
+      background-color: antiquewhite;
+      width: fit-content;
+      ">Disease Association </h3>
+      <table id="example" class="tableBodyScroll table-striped table table-bordered">
+        <thead>
+          <tr style="background-color: #ff7017c9;">
+            <th>miRNA</th>
+            <th>Disease</th>
+            <th>PMID</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in disease %}
+          <tr>
+            <td>{{mirna}}</td>
+            <td>{{disease|get_at_index:forloop.counter0}}</td>
+            <td><a href='https://www.ncbi.nlm.nih.gov/pubmed/{{refid|get_at_index:forloop.counter0}}' target="_blank">{{refid|get_at_index:forloop.counter0}}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="row" style="margin-top:2%">
+
+    <div class="col-12">
+      <h3 style="
+      border-style: double;
+      background-color: antiquewhite;
+      width: fit-content;
+      ">Gene Ontology </h3>
+      <table id="example2" class="tableBodyScroll table-striped table table-bordered">
+        <thead>
+          <tr style="background-color: #ff7017c9;">
+            <th>miRNA</th>
+            <th>Category</th>
+            <th>Count</th>
+            <th>Genes</th>
+            <th>GO ID</th>
+            <th>Percentage</th>
+            <th>Value</th>
+            <th>Term</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in category %}
+          <tr>
+            <td>{{mirna}}</td>
+            <td>{{category|get_at_index:forloop.counter0}}</td>
+            <td>{{ocount|get_at_index:forloop.counter0}}</td>
+            <td>{{geon|get_at_index:forloop.counter0}}</td>
+            <td>{{goid|get_at_index:forloop.counter0}}</td>
+            <td>{{peronto|get_at_index:forloop.counter0}}</td>
+            <td>{{pval|get_at_index:forloop.counter0}}</td>
+            <td>{{term|get_at_index:forloop.counter0}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="row" style="margin-top:2%">
+    <div class="col-12">
+      <h3 style="
+      border-style: double;
+      background-color: antiquewhite;
+      width: fit-content;
+      ">KEGG Pathways</h3>
+      <table id="example3" class="tableBodyScroll table-striped table table-bordered">
+        <thead>
+          <tr style="background-color: #ff7017c9;">
+            <th>miRNA</th>
+            <th>Count</th>
+            <th>Kegg ID</th>
+            <th>Genes</th>
+            <th>Value</th>
+            <th>Term</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in pcount %}
+          <tr>
+            <td>{{mirna}}</td>
+            <td>{{pcount|get_at_index:forloop.counter0}}</td>
+            <td>{{kgid|get_at_index:forloop.counter0}}</td>
+            <td>{{pgeon|get_at_index:forloop.counter0}}</td>
+            <td>{{ppval|get_at_index:forloop.counter0}}</td>
+            <td>{{pterm|get_at_index:forloop.counter0}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- START THE FEATURETTES -->
+
+<hr class="featurette-divider">
+<!-- /END THE FEATURETTES -->
+
+<!-- FOOTER -->
+<div class="container-fluid" style="position:relative;bottom:0px;background-image:url('{% static "images/Picture6.png"%}');height:35px">
+  <p style="text-align: center;">Created and maintained by DIPAS, DRDO</p>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" rel="stylesheet" type="text/css" />
+<script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+<script>window.jQuery || document.write('<script src="{% static 'js/jquery-slim.min.js' %}"><\/script>')</script>
+
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="{% static 'js/popper.min.js' %}"></script>
+
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="{% static 'js/holder.min.js' %}"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+  $('#example').DataTable( {
+    "bDestroy": true,
+    dom: 'Bfrtip',
+    buttons: [
+      'excelHtml5',
+      'pdfHtml5'
+    ]
+  } );
+
+  $('#example1').DataTable( {
+    "bDestroy": true,
+    dom: 'Bfrtip',
+    buttons: [
+      'excelHtml5',
+      'pdfHtml5'
+    ]
+  } );
+
+  $('#example2').DataTable( {
+    "bDestroy": true,
+    dom: 'Bfrtip',
+    buttons: [
+      'excelHtml5',
+      'pdfHtml5'
+    ]
+  } );
+
+  $('#example3').DataTable( {
+    "bDestroy": true,
+    dom: 'Bfrtip',
+    buttons: [
+      'excelHtml5',
+      'pdfHtml5'
+    ]
+  } );
+
+  // create an array with nodes
+
+  var nodes = new vis.DataSet({{nodes|safe}});
+
+  // // create an array with edges
+  var edges = new vis.DataSet({{edges|safe}});
+
+  var container = document.getElementById('mynetwork');
+
+
+  // // provide the data in the vis format
+  var data = {
+    nodes: nodes,
+    edges: edges,
+
+  };
+  var options = {
+    interaction: {
+      navigationButtons: true,
+
+      multiselect: true,
+    },
+    layout:{
+      randomSeed:34
+    },
+    physics: {
+      forceAtlas2Based: {
+        gravitationalConstant: -26,
+        centralGravity: 0.005,
+        springLength: 230,
+        springConstant: 0.18
+      },
+      maxVelocity: 146,
+      solver: 'forceAtlas2Based',
+      timestep: 0.35,
+      stabilization: {
+        enabled:true,
+        iterations:250,
+        updateInterval:8
+      }
+    }
+  };
+
+  // initialize your network!
+  var network = new vis.Network(container, data, options);
+  network.on("stabilizationProgress", function(params) {
+    var maxWidth = 496;
+    var minWidth = 20;
+    var widthFactor = params.iterations/params.total;
+    var width = Math.max(minWidth,maxWidth * widthFactor);
+
+    document.getElementById('bar').style.width = width + 'px';
+    document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+  });
+  network.once("stabilizationIterationsDone", function () {
+    document.getElementById('text').innerHTML = '100%';
+    document.getElementById('bar').style.width = '496px';
+    document.getElementById('loadingBar').style.opacity = 0;
+    // really clean the dom element
+    setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+    network.setOptions( { physics: false } );
+  });
+
+  // add event listeners
+  network.on('select', function(params) {
+    document.getElementById('selection').innerHTML = 'Selection: ' + params.nodes;
+  });
+
+  $("#downedge").click(function(){
+
+
+    $("#dvjson").excelexportjs({
+      containerid: "dvjson"
+      , datatype: 'json'
+      , dataset: {{dwdata|safe}}
+      , columns: getColumns({{dwdata|safe}})
+    });
+
+  });
+})
+
+</script>
+
+</body>
+</html>

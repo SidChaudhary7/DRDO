@@ -1,0 +1,384 @@
+{% load static %}
+{% load listfilt %}
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-146281994-1');
+  </script>
+  <!-- Requiblack meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="{% static 'images/fvicon.png'%}">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+  .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: -webkit-fill-available;
+  }
+  .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+    color: #999;
+    height: 50px;
+  }
+  </style>
+
+<title>MYOMIR.DB</title>
+</head>
+<body>
+  <div class=container-fluid style='background-image:url({% static "images/Picture1.png" %});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;'>
+
+    <div class="row" >
+      <div class="col-3" >
+      </div>
+      <div class="col-6" >
+        <img src="{% static 'images/Picture2.png' %}" style="width: 100%;">
+          <p align=center style="color:black;font-size: 33px;font-weight: 600;">A Database of miRNAs during Muscular Atrophy</p>
+      </div>
+<div class="col-1">
+</div>
+<div class="col-2">
+  <div class="row">
+    <div class="col-6" style="padding: 0;padding-top: 8%;">
+      <img src="{% static 'images/Picture3.png' %}" style="width: 100%;">
+    </div>
+    <div class="col-6" style="padding: 0;padding-top: 14%;">
+      <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">Defence Institute of Physiology and Allied Sciences,</p>
+      <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">DRDO</p>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fee7ed !important;">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav" style="margin-left: 30%;">
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'index'%}">Home <span class="sr-only">(current)</span></a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link active" href="{% url 'query'%}">Browse</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'search'%}">Search</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'tutorial'%}">Tutorial</a>
+<a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'stats'%}">Statistics</a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'contact'%}">Contact</a>
+    </div>
+  </div>
+</nav>
+<div class="container" style="margin-top:2%">
+  <div id="accordion">
+
+    <div class="card" style="margin-bottom: 2%;">
+      <div class="card-header" id="headingOne" style="background-color: antiquewhite;">
+        <div class="row">
+          <div class="col-11">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: black;font-size: 25px;font-weight: 500;">
+              Level of Expression
+            </button>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: black;">
+              <i class="material-icons" style="font-size: 30px;font-weight: bolder;">
+                add
+              </i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+
+          <ul>
+            <li > <a href="{% url 'result' q_r='Downregulated' q_p='uds' %}">  List of downregulated miRNAs </a></li>
+            <li> <a href="{% url 'result' q_r='Upregulated' q_p='uds' %}">  List of upregulated miRNAs</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card" style="margin-bottom: 2%;">
+      <div class="card-header" id="headingTwo" style="background-color: antiquewhite;">
+        <div class="row">
+          <div class="col-11">
+            <button class="btn btn-link collapsed"  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: black;font-size: 25px;font-weight: 500;">
+              Tissue of Expression of miRNA
+            </button>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" style="color: black;">
+              <i class="material-icons" style="font-size: 30px;font-weight: bolder;">
+                add
+              </i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          <ul>
+            <li> <a href="{% url 'result' q_r='Tibialisanteriormuscle' q_p='soe' %}"> Tibialis Anterior Muscle</a></li>
+            <!-- <li> <a href="{% url 'result' q_r='Muscles' q_p='soe' %}">  muscle biopsy</a></li> -->
+            <li> <a href="{% url 'result' q_r='Vastuslateralismuscle' q_p='soe' %}">  Vastus Lateralis Muscle</a></li>
+            <li> <a href="{% url 'result' q_r='Serum' q_p='soe' %}"> Serum</a></li>
+            <li> <a href="{% url 'result' q_r='Skeletalmuscle' q_p='soe' %}">  Skeletal Muscle</a></li>
+            <li> <a href="{% url 'result' q_r='Rectusfemoris' q_p='soe' %}">  Rectus Femoris</a></li>
+            <li> <a href="{% url 'result' q_r='Gastrocnemiusmuscle' q_p='soe' %}">  Gastrocnemius Muscle</a></li>
+            <li> <a href="{% url 'result' q_r='Other' q_p='soe' %}">  Others</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 2%;">
+      <div class="card-header" id="headingThree" style="background-color: antiquewhite;">
+        <div class="row">
+          <div class="col-11">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="color: black;font-size: 25px;font-weight: 500;">
+              Duration of Experiment
+            </button>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="#collapseThree" style="color: black;">
+              <i class="material-icons" style="font-size: 30px;font-weight: bolder;">
+                add
+              </i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body">
+          <li> <a href="{% url 'result' q_r='hour' q_p='doeh' %}"> Hours</a></li>
+          <li> <a href="{% url 'result' q_r='day' q_p='doed' %}"> Days</a></li>
+          <li> <a href="{% url 'result' q_r='week' q_p='doew' %}"> Week</a></li>
+          <li> <a href="{% url 'result' q_r='Year' q_p='doey' %}"> Years (Ageing related studies)</a></li>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 2%;">
+      <div class="card-header" id="headingOne" style="background-color: antiquewhite;">
+        <div class="row">
+          <button class="btn btn-link" style="color: black;font-size: 25px;font-weight: 500;">
+            Source Organism
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 2%;">
+      <div class="col-3">
+        <div class="card">
+          <div class="card-header" id="headingsix" style="background-color: antiquewhite;">
+            <div class="row">
+              <div class="col-9">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix" style="color: black;font-size: 25px;font-weight: 500;">
+                  Human
+                </button>
+              </div>
+              <div class="col-3">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix" style="color: black;">
+                  <i class="material-icons" style="font-size: 30px;font-weight: bolder;">
+                    add
+                  </i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
+            <div class="card-body">
+              <ul>
+                <li> <a href="{% url 'result' q_r='Humans' q_p='tom' %}">  HUMANS</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="card">
+          <div class="card-header" id="headingsev" style="background-color: antiquewhite;">
+            <div class="row">
+              <div class="col-6">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsesev" aria-expanded="false" aria-controls="collapsesev" style="color: black;font-size: 25px;font-weight: 500;">
+                  Mice
+                </button>
+              </div>
+              <div class="col-6">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesev" aria-expanded="true" aria-controls="collapsesev" style="color: black;">
+                  <i class="material-icons" style="font-size: 30px;font-weight: bolder;">
+                    add
+                  </i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="collapsesev" class="collapse" aria-labelledby="headingsev" data-parent="#accordion">
+            <div class="card-body">
+              <ul>
+                <li> <a href="{% url 'result' q_r='BALBcmice' q_p='tom' %}">  BALB/c mice</a></li>
+                <li> <a href="{% url 'result' q_r='FVBmice' q_p='tom' %}"> FVB mice</a></li>
+                <li> <a href="{% url 'result' q_r='CD1mice' q_p='tom' %}">  CD1 Mice</a></li>
+                <li> <a href="{% url 'result' q_r='AdultC57mice' q_p='tom' %}">Adult C57 mice</a></li>
+                <li> <a href="{% url 'result' q_r='C57BL6mice' q_p='tom' %}">  C57BL/6 mice</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="card">
+          <div class="card-header" id="headingeig" style="background-color: antiquewhite;">
+            <div class="row">
+              <div class="col-6">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseeig" aria-expanded="false" aria-controls="collapseeig" style="color: black;font-size: 25px;font-weight: 500;">
+                  Rats
+                </button>
+              </div>
+              <div class="col-6">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseeig" aria-expanded="true" aria-controls="collapseeig" style="color: black;">
+                  <i class="material-icons" style="font-size: 30px;font-weight: bolder;">
+                    add
+                  </i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="collapseeig" class="collapse" aria-labelledby="headingeig" data-parent="#accordion">
+            <div class="card-body">
+              <ul>
+                <li> <a href="{% url 'result' q_r='SpragueDawleyrats' q_p='tom' %}">Sprague Dawley rats</a></li>
+                <li> <a href="{% url 'result' q_r='Wistarrats' q_p='tom' %}"> Wistar rats</a></li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card">
+          <div class="card-header" id="headingnine" style="background-color: antiquewhite;">
+            <div class="row">
+              <div class="col-9">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsenine" aria-expanded="false" aria-controls="collapsenine" style="color: black;font-size: 25px;font-weight: 500;">
+                  Cell Lines
+                </button>
+              </div>
+              <div class="col-3">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapsenine" aria-expanded="true" aria-controls="collapsenine" style="color: black;">
+                  <i class="material-icons" style="font-size: 30px;font-weight: bolder;">
+                    add
+                  </i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="collapsenine" class="collapse" aria-labelledby="headingnine" data-parent="#accordion">
+            <div class="card-body">
+
+              <ul>
+                <li> <a href="{% url 'result' q_r='C2C12cellline' q_p='tom' %}">C2C12 cell lines</a></li>
+                <li> <a href="{% url 'result' q_r='HEK293T' q_p='tom' %}"> HEK293T cell line</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="card">
+          <div class="card-header" id="headingTen" style="background-color: antiquewhite;">
+            <div class="row">
+              <div class="col-6">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen" style="color: black;font-size: 25px;font-weight: 500;">
+                  Others
+                </button>
+              </div>
+              <div class="col-6">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen" style="color: black;">
+                  <i class="material-icons" style="font-size: 30px;font-weight: bolder;">
+                    add
+                  </i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
+            <div class="card-body">
+              <ul>
+
+                <li> <a href="{% url 'result' q_r='Xuhaigoat' q_p='tom' %}"> Xuhai goat</a></li>
+                <li> <a href="{% url 'result' q_r='Rhesusmonkey' q_p='tom' %}"> Rhesus monkey</a></li>
+                <li> <a href="{% url 'result' q_r='129SvEv' q_p='tom' %}"> miR-206–/– mice in a 129SvEv-C57BL/6 mice</a></li>
+
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card" style="margin-bottom: 2%;">
+      <div class="card-header" id="headingFive" style="background-color: antiquewhite;">
+        <div class="row">
+          <div class="col-11">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="color: black;font-size: 25px;font-weight: 500;">
+              Browse by Association
+            </button>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive" style="color: black;">
+              <i class="material-icons" style="font-size: 30px;font-weight: bolder;">
+                add
+              </i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+        <div class="card-body">
+          <ul>
+            <li> <a href="{% url 'searchge' %}">miRNAs Associated with a Gene list</a></li>
+            <li> <a href="{% url 'resultdibi' %}">miRNAs Associated as Biomarkers</a></li>
+
+            <!-- <li> <a href="{% url 'searchtf' %}">Tfs</a></li> -->
+            <li> <a href="{% url 'searchdrug'  %}">miRNAs Associated with a Drug</a></li>
+            <li> <a href="{% url 'searchontogoid'  %}">miRNAs Associated with a GO ID</a></li>
+            <li> <a href="{% url 'searchontoterm'  %}">miRNAs Associated with an Gene Ontology Term</a></li>
+            <li> <a href="{% url 'searchpathwayid'  %}">miRNAs Associated with a Kegg ID</a></li>
+            <li> <a href="{% url 'searchpathwayterm'  %}">miRNAs Associated with a Kegg Pathway</a></li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="container-fluid" style="position:relative;bottom:0px;background-image:url('{% static "images/Picture6.png"%}');height:35px">
+  <p style="text-align: center;">Created and maintained by DIPAS, DRDO</p>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

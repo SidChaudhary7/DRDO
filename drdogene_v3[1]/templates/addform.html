@@ -1,0 +1,195 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-146281994-1');
+  </script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="{% static 'images/fvicon.png'%}">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>MYOMIR.DB</title>
+</head>
+<body>
+
+  <div class=container-fluid style='background-image:url({% static "images/Picture1.png" %});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;'>
+
+  <div class="row" >
+    <div class="col-3" >
+    </div>
+    <div class="col-6" >
+      <img src="{% static 'images/Picture2.png' %}" style="width: 100%;">
+      <p align=center style="color:black;font-size: 33px;font-weight: 600;">A Database of miRNAs during Muscular Atrophy</p>
+    </div>
+    <div class="col-1">
+    </div>
+    <div class="col-2">
+      <div class="row">
+        <div class="col-6" style="padding: 0;padding-top: 8%;">
+          <img src="{% static 'images/Picture3.png' %}" style="width: 100%;">
+        </div>
+        <div class="col-6" style="padding: 0;padding-top: 14%;">
+          <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">Defence Institute of Physiology and Allied Sciences,</p>
+          <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">DRDO</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fee7ed !important;">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav" style="margin-left: 30%;">
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'index'%}">Home <span class="sr-only">(current)</span></a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'query'%}">Browse</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'search'%}">Search</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'tutorial'%}">Tutorial</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'stats'%}">Statistics</a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link active" href="{% url 'contact'%}">Contact</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+{% if mail %}
+  <div class="row" style="
+  position:  fixed;
+  top: 8%;
+  right: 3%;
+  z-index: 10000;
+">
+    <div class="col-12">
+       <div class="alert alert-info alert-dismissible fade show" id="submitted" style="display:block;text-align:  center;font-size: 30px;">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+            <strong>Info!</strong> Data Submitted.
+          </div>
+    </div>
+<!--
+    <div class="col-12">
+       <div class="alert alert-danger" id="error" style="display:none;text-align:  center;font-size: 30px;">
+            <strong>Info!</strong> Fill all the data.
+          </div>
+    </div> -->
+
+
+  </div>
+{% endif %}
+
+  <div class="row" >
+
+    <!-- Three columns of text below the carousel -->
+    <form style="margin: 3%;width: -webkit-fill-available;" method="post" action="{% url 'addform' %}" >{%csrf_token%}
+      <div class="form-group row">
+        <label for="pmirna" class="col-sm-2 col-form-label">miRNA human/ mouse homolog</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="mirna" name="mirna" placeholder="hsa-let-*" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="chromosome" class="col-sm-2 col-form-label">Muscle Atrophy miRNA listed in text</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="musmir" name="musmir" placeholder="mmu-let-*, hsa-miR-*" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="fprime" class="col-sm-2 col-form-label">Experimental Condition</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="exp" name="exp" placeholder="Experimental Condition" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="family" class="col-sm-2 col-form-label">Model organism
+</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="tom" name="tom" placeholder="Model organism" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="tprime" class="col-sm-2 col-form-label">Level of regulation</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="uds" name="uds" placeholder="Up/down regulation" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="mform" class="col-sm-2 col-form-label">Fold Change</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="fc" name="fc" placeholder="Fold Change" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="rna" class="col-sm-2 col-form-label">Diagnostic Biomarker</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="dibo" name="dibi" placeholder="Diagnostic Biomarker" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="precurs" class="col-sm-2 col-form-label">Site of Expression</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="soe" name="soe" placeholder="Site of Expression" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="macc" class="col-sm-2 col-form-label">Duration of experiment</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="doe" name="doe" placeholder="Duration of experiment" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="disease" class="col-sm-2 col-form-label">Type of Experiment</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="toe" name="toe" placeholder="Type of Experiment" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="disref" class="col-sm-2 col-form-label">Reference</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="ref" name="ref" placeholder="Reference" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <button type="submit" id="mybutton3" class="btn btn-primary btn-lg btn-block" style="width: 50%;margin-left: 25%;">Submit</button>
+        </div>
+      </div>
+    </form>
+    </div>
+
+  </div><!-- /.container -->
+
+
+  <!-- FOOTER -->
+  <div class="container-fluid" style="position:fixed;bottom:0px;background-image:url('{% static "images/Picture6.png"%}');height:35px">
+    <p style="text-align: center;">Created and maintained by DIPAS, DRDO</p>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

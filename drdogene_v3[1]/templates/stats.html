@@ -1,0 +1,150 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-146281994-1');
+  </script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="{% static 'images/fvicon.png'%}">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<title>MYOMIR.DB</title>
+</head>
+<body>
+
+  <div class=container-fluid style='background-image:url({% static "images/Picture1.png" %});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;'>
+
+    <div class="row" >
+      <div class="col-3" >
+      </div>
+      <div class="col-6" >
+        <img src="{% static 'images/Picture2.png' %}" style="width: 100%;">
+          <p align=center style="color:black;font-size: 33px;font-weight: 600;">A Database of miRNAs during Muscular Atrophy</p>
+      </div>
+<div class="col-1">
+</div>
+<div class="col-2">
+  <div class="row">
+    <div class="col-6" style="padding: 0;padding-top: 8%;">
+      <img src="{% static 'images/Picture3.png' %}" style="width: 100%;">
+    </div>
+    <div class="col-6" style="padding: 0;padding-top: 14%;">
+      <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">Defence Institute of Physiology and Allied Sciences,</p>
+      <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">DRDO</p>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fee7ed !important;">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav" style="margin-left: 30%;">
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'index'%}">Home <span class="sr-only">(current)</span></a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'query'%}">Browse</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'search'%}">Search</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'tutorial'%}">Tutorial</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link active" href="{% url 'stats'%}">Statistics</a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'contact'%}">Contact</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row" style="margin-top:2%">
+    <div class="col-8">
+      <img src="{% static 'images/stats/2.png' %}" style="width: 100%;"/>
+    </div>
+    <div class="col-4" style="margin-top:2%">
+      <p style="text-align: justify;">Graphical representation of the number of miRNAs and its targets (TFs, genes) in the MyomirDB
+
+  </p>
+    </div>
+  </hr>
+  <div class="col-4" style="margin-top:2%">
+    <p style="text-align: justify;">Graphical representation of the number of miRNA-gene, miRNA-TF, TF-gene interactions in the database requires to construct miRNA-TF gene co-regulatory networks
+
+</p>
+  </div>
+  <div class="col-8">
+    <img src="{% static 'images/stats/3.png' %}" style="width: 100%;"/>
+  </div>
+
+</hr>
+
+<div class="col-8">
+  <img src="{% static 'images/stats/1.jpg' %}" style="width: 100%;"/>
+</div>
+<div class="col-4" style="margin-top:2%">
+  <p style="text-align: justify;">Graphical representation of the  number of miRNA to Drug and miRNA gene associations in MyomirDB
+
+</p>
+</div>
+</hr>
+
+    <div class="col-8">
+      <img src="{% static 'images/stats/Picture1.png' %}" style="width: 100%;"/>
+    </div>
+    <div class="col-4" style="margin-top:2%">
+      <p style="text-align: justify;">The figure shows the publication of muscle atrophy where miRNA, TF, Genes have been reported during last 20 years. The trends shows that though genes and TF reports are much higher in number as compared to miRNA but there is an significant increase in the reports since last four year and trend is exponential in nature as shown in index figure.
+
+  </p>
+    </div>
+  </hr>
+    <div class="col-4" style="margin-top:2%">
+      <p style="text-align: justify;">The figure shows the publications where miRNA, TF, Genes and network motifs have been reported as biomarkers during last 20 years. The trends shows that though miRNA, genes and TF reports are much higher in number as compared to network motifs but there is an significant increase in the reports of network motifs as biomarker since 2010 year and trend is exponential in nature after 2015
+  </p>
+  </div>
+    <div class="col-8" style="margin-top:2%">
+      <img src="{% static 'images/stats/Picture2.jpg' %}" style="width: 100%;" />
+    </div>
+
+
+    <div class="col-12" style="margin-top:2%">
+      <img src="{% static 'images/stats/Picture3.jpg' %}" style="width: 100%;"/>
+    </div>
+    <div class="col-12" style="margin-top:2%">
+      <img src="{% static 'images/stats/Picture4.jpg' %}" style="width: 100%;"/>
+    </div>
+    <div class="col-12" style="margin-top:2%">
+      <img src="{% static 'images/stats/Picture5.jpg' %}" style="width: 100%;"/>
+    </div>
+    <div class="col-12" style="margin-top:2%;margin-bottom:2%">
+      <img src="{% static 'images/stats/Picture6.jpg' %}" style="width: 100%;"/>
+    </div>
+  </div>
+
+
+    </div><!-- /.container -->
+
+
+    <!-- FOOTER -->
+    <div class="container-fluid" style="position:fixed;bottom:0px;background-image:url('{% static "images/Picture6.png"%}');height:35px">
+      <p style="text-align: center;">Created and maintained by DIPAS, DRDO</p>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+  </html>

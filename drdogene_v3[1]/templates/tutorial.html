@@ -1,0 +1,462 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-146281994-1');
+  </script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="{% static 'images/fvicon.png'%}">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>MYOMIR.DB</title>
+</head>
+<body>
+
+  <div class=container-fluid style='background-image:url({% static "images/Picture1.png" %});
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;'>
+
+  <div class="row" >
+    <div class="col-3" >
+    </div>
+    <div class="col-6" >
+      <img src="{% static 'images/Picture2.png' %}" style="width: 100%;">
+      <p align=center style="color:black;font-size: 33px;font-weight: 600;">A Database of miRNAs during Muscular Atrophy</p>
+    </div>
+    <div class="col-1">
+    </div>
+    <div class="col-2">
+      <div class="row">
+        <div class="col-6" style="padding: 0;padding-top: 8%;">
+          <img src="{% static 'images/Picture3.png' %}" style="width: 100%;">
+        </div>
+        <div class="col-6" style="padding: 0;padding-top: 14%;">
+          <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">Defence Institute of Physiology and Allied Sciences,</p>
+          <p style="margin-bottom: 0;color: black;font-size: 12px;font-weight: 700;text-transform: uppercase;">DRDO</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fee7ed !important;">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav" style="margin-left: 30%;">
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'index'%}">Home <span class="sr-only">(current)</span></a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'query'%}">Browse</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'search'%}">Search</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link active" href="{% url 'tutorial'%}">Tutorial</a>
+      <a  style="font-size: 22px;font-weight: 500;"class="nav-item nav-link" href="{% url 'stats'%}">Statistics</a>
+      <a style="font-size: 22px;font-weight: 500;" class="nav-item nav-link" href="{% url 'contact'%}">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="row">
+
+
+    <div class="col-12">
+      <p style:"text-align:justify">
+        MyomiRDB is a first-ever curated database of muscle miRNAs that are differentially expressed (DE) during muscle atrophy. This database provides information on DE muscle atrophy miRNA with their fold change, source organism, biomarker association, tissue of expression, duration of experiment and experimental validation. The database also gives information about miRNA i.e. miRBase accession no, miRNA Family, chromosome number, precursor and mature sequences, its stem-loop structure, drug and disease correlation etc. MyomiRDB gives complete target (TF, gene, miRNA) network of each DE muscle atrophy miRNAs with visualization and downloadable in (.SIF) format. It also identifies the Feed forward loops (FFLs) in the miRNA-TF gene regulatory network.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h3 style="color:red">Home</h3>
+    </div>
+
+    <div class="col-12">
+      <img src="{% static 'images/tutorial/Picture1.jpg' %}" style="width:100%"/>
+    </div>
+
+    <div class="col-12">
+      <h3 style="color:red">Search</h3>
+    </div>
+
+    <div class="col-12">
+      <img src="{% static 'images/tutorial/Picture2.png' %}" style="width:100%"/>
+    </div>
+
+    <div class="col-12">
+      <img src="{% static 'images/tutorial/Picture2_3.jpg' %}" style="width:100%"/>
+    </div>
+
+  </div>
+
+  <div class="row" style="margin-top:2%">
+    <div class="col-12">
+      <h2 align="center" style="color:black">miRNA Information Page</h2>
+    </div>
+
+    <div class="col-12">
+      <p>Users can Browse  the any miRNA present in the myomiRDB. On clicking search Button the page browse to information page of that miRNA for e.g. hsa-let-7a-5p. The information page contains details stored from knowledge databases such as miRBase Accession, miRNA family, miRNA 5’,3’ ID etc. After knowledge data it contains information about precursor and mature sequences of miRNA. The database also identifies miRNA target genes and transcription factors(TFs) and  forms miRNA-TF gene co-regulatory network. This network is being visualize using vis.js package. The graph visualization is dynamic in nature. In network graph user can move nodes in the space, also network graph can be Zoom In and Zoom out. User can also Download the excel file in (.sif) format. This file can be exported to visualize network in visualization software like cytoscape. The information on miRNA page can be divided into four categories.
+      </p>
+      <p>
+        <ol>
+          <li style="color:red">
+          Knowledge based: miRNA Accession, miRNA family, chromosome number, precursor and mature sequence
+          </li>
+          <li style="color:red">
+            <a href="#p5"  style="color:red" id="p1"> Association with Muscle Atrophy:</a>
+          </li>
+          <li style="color:red">
+            <a href="#p6"  style="color:red" id="p2"> Feed Forward Loops: </a>
+          </li>
+          <li style="color:red">
+            <a href="#p7"  style="color:red" id="p3"> Association of miRNA with Drugs, Tissues and Other Diseases:</a>
+          </li>
+          <li style="color:red">
+            <a href="#p8"  style="color:red" id="p4"> Association with Gene Ontology and Pathways.</a>
+          </li>
+        </ol>
+      </p>
+    </div>
+
+
+  <div class="col-3">
+    <ul>
+<li style="margin-bottom:2%;margin-top:8%">
+  <a class="btn btn-primary"  type="button" href="#pt4" id="bpt4">miRBase Accession</a>
+</li>
+<li style="margin-bottom:2%">
+  <a class="btn btn-primary"  type="button" href="#pt4">5'</a>
+</li>
+<li style="margin-bottom:1%">
+  <a class="btn btn-primary"  type="button" href="#pt5" id="bpt5">RNA central Id</a>
+</li>
+</ul>
+  </div>
+
+    <div class="col-9">
+      <img src="{% static 'images/tutorial/Picture3.jpg' %}" style="width: 100%;"/>
+    </div>
+
+  </div>
+
+  <div class="row" style="margin: 1%;" id="p5">
+    <div class="col-12" >
+      <h3><a href="#p1" style="color:red">Association with Muscle Atrophy:</a> </h3>
+      <p>User can scroll down to see information related to miRNA association with muscle atrophy association. This information involves muscle atrophy miRNA name, miRNA human homolog, model organism, experimental details,  duration of experiment, level of expression, fold change, tissue of expression, associated as biomarker, reference PMID.
+      </p>
+    </div>
+    <div class="col-3">
+      <ul>
+      <li style="margin-bottom:2%;margin-top:8%">
+      <a class="btn btn-primary "  type="button" href="#pt6" id="bpt6">Reference PMID</a>
+      </li>
+      </ul>
+    </div>
+    <div class="col-9">
+      <img src="{% static 'images/tutorial/Picture4.jpg' %}" style="width: 100%;"/>
+    </div>
+  </div>
+
+  <div class="row" style="margin: 1%;" id="p6">
+    <div class="col-12" >
+      <h3 style="color:red"><a href="#p2" style="color:red">Feed Forward Loops (FFLs)</a> </h3>
+      <p>Using our custom algorithm the Feed Forward Loops(FFLs) has been identified and are store in the database. User can click on see FFL button below network graph to see Feed Forward loops table on new page. User can also search specific FFL based on TF, gene. Also user can download the table in Excel and PDF format.
+      </p>
+    </div>
+    <div class="col-12">
+      <img src="{% static 'images/tutorial/Picture5.jpg' %}"/>
+    </div>
+  </div>
+
+  <div class="row" style="margin: 1%;" id="p7">
+    <div class="col-12" >
+      <h3 style="color:red"><a href="#p3" style="color:red">Association of miRNA with Drugs, Tissues and Other Diseases:<a/> </h3>
+      <p>User can further scroll down to see information related to miRNA association drug, disease and tissue. In disease and tissue association table the user can search for specific disease and tissue by name. The data in the table can be downloaded both in excel and PDF format.. Every PMIDs in drug and disease association table are hyperlinked to PubMed literature database.
+      </p>
+    </div>
+    <div class="col-3">
+      <ul>
+      <li style="margin-bottom:2%;margin-top:8%">
+      <a class="btn btn-primary "  type="button" href="#pt7" id="bpt7">PMID</a>
+      </li>
+      <li style="margin-bottom:2%;margin-top:8%">
+      <a class="btn btn-primary "  type="button" href="#pt8" id="bpt8">PMID</a>
+      </li>
+      </ul>
+    </div>
+    <div class="col-9">
+      <img src="{% static 'images/tutorial/Picture6.png' %}" style="width: 100%;"/>
+    </div>
+  </div>
+
+  <div class="row" style="margin: 1%;" id="p8">
+    <div class="col-12" >
+      <h3 style="color:red"><a href="#p4" style="color:red">Association with Gene Ontology and Pathways </a></h3>
+      <p>User can further scroll down to see information related to miRNA association with gene ontology(GO) and pathways. In Gene ontology table at each miRNA page, user get information on category [biological process(BP), molecular Function(MF), Cellular component(CC)], gene counts, genes ensemble ID, GO ID, percentage, Enrichment value, Term. Similar type of information can be get  from pathways table that include count, Kegg ID, genes ensemble ID, enrichment score and pathway term. Both the data in the table can be downloaded both in excel and PDF format.. Every PMIDs in drug and disease association table are hyperlinked to PubMed literature database.
+      </p>
+    </div>
+    <div class="col-12">
+      <img src="{% static 'images/tutorial/Picture7.jpg' %}"/>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin: 1%;" id="p4">
+    <div class="col-12" >
+      <h3 style="color:red">Browse </h3>
+      <p>
+        Users can Browse the data present in MyomiRDB in different levels. The complete data of muscle atrophy miRNA present in MyomiRDB was manually reviewed and divided into the various category as follows:
+        <p>
+          <ol>
+            <li style="color:red">
+             Level of Expression
+            </li>
+            <li style="color:red">
+  Duration of Experiment
+            </li>
+            <li style="color:red">
+              Source Organism: Human , Mice, Rats, Cell lines, others(Goat, monkey)
+            </li>
+            <li style="color:red">
+          Others
+            </li>
+          </ol>
+        </p>
+      </p>
+    </div>
+    <div class="col-12">
+      <img src="{% static 'images/tutorial/Picture8.jpg' %}"/>
+    </div>
+  </div>
+
+  <div class="row" style="margin: 1%;">
+    <div class="col-12" >
+      <p >
+        <span style="color:red"> Level of expression: </span>Using this option the user can retrieve a list of miRNAs that are up regulated or downregulated during muscle atrophy. Click on any of two option opens a table of miRNA that are either upregulated or downregulated. Each miRNA in the table is being hyperlinked to the individual miRNA information page 
+      </p>
+    </div>
+    <div class="col-12">
+      <img src="{% static 'images/tutorial/Picture9.jpg' %}"/>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin: 1%;">
+    <div class="col-12" >
+      <h3 style="color:red">Tissue of expression, Duration of experiment and source organism</h3>
+      <p>
+        User can browse  miRNA using other categories like Tissue of expression, Duration of experiment and source organism. All these option enables the user to retrieve a list of specific  miRNAs that fall under these categories in database. Click on any of two option opens a table of miRNA that are either upregulated or downregulated. Each miRNA in the table is being hyperlinked to the individual miRNA information page. Each table can be downloaded in Excel and PDF format
+      </p>
+    </div>
+    <div class="col-12">
+      <img src="{% static 'images/tutorial/Picture9.jpg' %}"/>
+    </div>
+  </div>
+
+  <div class="row" style="margin: 1%;" >
+    <div class="col-12" >
+      <h3 style="color:red">Others: search options </h3>
+
+      <p>This database enables user with special search options:</p>
+
+      <ol>
+        <li style="color:red">
+          <a href="#p9"  style="color:red" id="p22">  Search miRNA from Gene set</a>
+        </li>
+        <li style="color:red">
+          <a href="#p10"  style="color:red" id="p16">   Search miRNAs as Biomarker</a>
+        </li>
+        <li style="color:red">
+          <a href="#p11"  style="color:red" id="p17">  Search miRNAs Associated with a Drug</a>
+        </li>
+        <li style="color:red">
+          <a href="#p12"  style="color:red" id="p18">   Search miRNAs Associated with a GO ID</a>
+        </li>
+        <li style="color:red">
+          <a href="#p13"  style="color:red" id="p19">  Search miRNAs Associated with a GO term</a>
+        </li>
+        <li style="color:red">
+          <a href="#p14"  style="color:red" id="p20">   Search miRNAs Associated with a Kegg ID</a>
+        </li>
+        <li style="color:red">
+          <a href="#p15"  style="color:red" id="p21">   Search miRNAs Associated with a Pathway</a>
+        </li>
+      </ol>
+    </p>
+  </p>
+</div>
+<div class="col-12">
+  <img src="{% static 'images/tutorial/Picture9.jpg' %}"/>
+</div>
+</div>
+
+<div class="row" style="margin: 1%;" id="p9">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#p22" style="color:red">Search miRNA from Gene set:</a></h3>
+    <p>
+      User can select multiple genes from the database and search related muscle atrophy miRNAs. On clicking the search button the new page will appear having tabular representation of input genes and corresponding miRNAs. All the miRNA are hyperlinked to their miRNA information page. The table can be downloaded in excel as well as PDF format.
+    </p>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture12.jpg' %}"/>
+  </div>
+</div>
+
+<div class="row" style="margin: 1%;" id="p10">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#p16" style="color:red">  Search miRNA as biomarker</a></h3>
+    <p>
+      User can see miRNA that are known to be biomarker in muscle atrophy. On clicking the search button the new page will appear having tabular representation of miRNAs associated as biomarker. All the miRNA are hyperlinked to their miRNA information page. The table can be downloaded in excel as well as PDF format.
+    </p>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture13.jpg' %}"/>
+  </div>
+</div>
+
+<div class="row" style="margin: 1%;" id="p11">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#p17" style="color:red">Search miRNA associated with drug</a>
+    </h3>
+    <p>
+      User can select any drug stored in the database and search related muscle atrophy miRNAs. On clicking the search button the new page will appear having tabular representation of input drug and corresponding miRNAs. All the miRNA are hyperlinked to their miRNA information page. The table can be downloaded in excel as well as PDF format.
+    </p>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture14.jpg' %}"/>
+  </div>
+</div>
+
+<div class="row" style="margin: 1%;" id="p12">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#p18" style="color:red">Search miRNA associated with GO ID</a>
+    </h3>
+    <p>
+      User can select any GO ID stored in the database and search related muscle atrophy miRNAs. On clicking the search button the new page will appear having tabular representation of input GO ID and corresponding miRNAs. All the miRNA are hyperlinked to their miRNA information page. The table can be downloaded in excel as well as PDF format.
+    </p>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture15.jpg' %}"/>
+  </div>
+</div>
+
+<div class="row" style="margin: 1%;" id="p13">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#p19" style="color:red">Search miRNA associated with GO term</a>
+    </h3>
+    <p>
+      User can select any GO term stored in the database and search related muscle atrophy miRNAs. On clicking the search button the new page will appear having tabular representation of input GO term and corresponding miRNAs. All the miRNA are hyperlinked to their miRNA information page. The table can be downloaded in excel as well as PDF format.
+    </p>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture16.jpg' %}"/>
+  </div>
+</div>
+
+<div class="row" style="margin: 1%;" id="p14">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#p20" style="color:red">Search miRNA associated with Kegg ID</a>
+    </h3>
+    <p>
+      User can select any GO term stored in the database and search related muscle atrophy miRNAs. On clicking the search button the new page will appear having tabular representation of input GO term and corresponding miRNAs. All the miRNA are hyperlinked to their miRNA information page. The table can be downloaded in excel as well as PDF format.
+    </p>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture17.jpg' %}"/>
+  </div>
+</div>
+
+<div class="row" style="margin: 1%;" id="p15">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#p21" style="color:red">Search miRNA associated with Pathway</a>
+    </h3>
+    <p>
+      User can select any GO term stored in the database and search related muscle atrophy miRNAs. On clicking the search button the new page will appear having tabular representation of input GO term and corresponding miRNAs. All the miRNA are hyperlinked to their miRNA information page. The table can be downloaded in excel as well as PDF format.
+    </p>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture18.jpg' %}"/>
+  </div>
+</div>
+
+
+<div class="row" style="margin: 1%;" id="pt4">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#bpt4" style="color:red">Hyperlink to miRBase </a></h3>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture19.jpg' %}"/>
+  </div>
+</div>
+
+
+<div class="row" style="margin: 1%;" id="pt5">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#bpt5" style="color:red">Hyperlink to RNA central database</a></h3>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture20.jpg' %}"/>
+  </div>
+</div>
+
+<div class="row" style="margin: 1%;" id="pt6">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#bpt6" style="color:red">Hyperlink to PubMed literature database</a></h3>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture21.jpg' %}"/>
+  </div>
+</div>
+
+
+<div class="row" style="margin: 1%;" id="pt7">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#bpt7" style="color:red">Hyperlink to PubMed literature database</a></h3>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture22.jpg' %}"/>
+  </div>
+</div>
+
+<div class="row" style="margin: 1%;" id="pt8">
+  <div class="col-12" >
+    <h3 style="color:red"><a href="#bpt8" style="color:red">Hyperlink to PubMed literature database</a></h3>
+  </div>
+  <div class="col-12">
+    <img src="{% static 'images/tutorial/Picture23.jpg' %}"/>
+  </div>
+</div>
+
+
+
+</div><!-- /.container -->
+
+
+<!-- FOOTER -->
+<div class="container-fluid" style="bottom:0px;background-image:url('{% static "images/Picture6.png"%}');height:35px;">
+  <p style="text-align: center;">Created and maintained by DIPAS, DRDO</p>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
